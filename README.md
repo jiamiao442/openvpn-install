@@ -36,4 +36,4 @@ cd /opt
 && wget https://www.ghproxy.cn/https://raw.githubusercontent.com/jiamiao442/openvpn-install/master/openvpn-with-google-auth-install.sh -O openvpn-with-google-auth-install.sh \
 && bash openvpn-with-google-auth-install.sh
 ```
-
+用户默认密码：123456
