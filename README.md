@@ -26,6 +26,9 @@ Once it ends, you can run it again to add more users, remove some of them or eve
 已在rockylinux 9 测试。
 
 ```
+# 建议更新系统，防止报错。 
+dnf update
+
 # 建议关闭selinux
 
 setenforce 0
