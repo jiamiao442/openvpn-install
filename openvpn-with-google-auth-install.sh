@@ -190,7 +190,12 @@ if [[ ! -e /etc/openvpn/server/server.conf ]]; then
 	done
 	[[ -z "$port" ]] && port="1194"
     echo "What public port for NAT IP should OpenVPN listen to?"
-	read -p "publicPort: " publicPort
+	read -p "publicPort [1194]: " publicPort
+	until [[ -z "$publicPort" || "$publicPort" =~ ^[0-9]+$ && "$publicPort" -le 65535 ]]; do
+		echo "$publicPort: invalid port."
+		read -p "publicPort [1194]: " publicPort
+	done
+	[[ -z "$publicPort" ]] && publicPort="1194"	
 	echo
 	echo "Select a DNS server for the clients:"
 	echo "   1) Current system resolvers"
