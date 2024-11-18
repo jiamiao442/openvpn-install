@@ -189,6 +189,8 @@ if [[ ! -e /etc/openvpn/server/server.conf ]]; then
 		read -p "Port [1194]: " port
 	done
 	[[ -z "$port" ]] && port="1194"
+    echo "What public port for NAT IP should OpenVPN listen to?"
+	read -p "publicPort: " publicPort
 	echo
 	echo "Select a DNS server for the clients:"
 	echo "   1) Current system resolvers"
@@ -433,7 +435,7 @@ WantedBy=multi-user.target" >> /etc/systemd/system/openvpn-iptables.service
 	fi
 	# If the server is behind NAT, use the correct IP address
 	[[ -n "$public_ip" ]] && ip="$public_ip"
-	read -p "publicPort: " publicPort
+
 	# client-common.txt is created so we have a template to add further users later
 	echo "client
 dev tun
