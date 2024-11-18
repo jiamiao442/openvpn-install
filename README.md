@@ -40,3 +40,17 @@ cd /opt
 && bash openvpn-with-google-auth-install.sh
 ```
 用户默认密码：123456
+
+### 遇见的问题
+1. 验证失败。日志如下
+```
+PLUGIN AUTH-PAM: BACKGROUND: user 'test1' failed to authenticate: Authentication service cannot retrieve authentication info
+192.168.174.1:65381 PLUGIN_CALL: POST /usr/lib64/openvpn/plugins/openvpn-plugin-auth-pam.so/PLUGIN_AUTH_USER_PASS_VERIFY status=1
+192.168.174.1:65381 PLUGIN_CALL: plugin function PLUGIN_AUTH_USER_PASS_VERIFY failed with status 1: /usr/lib64/openvpn/plugins/openvpn-plugin-auth-pam.so
+192.168.174.1:65381 TLS Auth Error: Auth Username/Password verification failed for peer
+```
+解决问题：关闭selinux
+```
+setenforce 0
+sed -i  's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config 
+```
