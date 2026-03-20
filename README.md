@@ -41,6 +41,26 @@ cd /opt
 ```
 用户默认密码：123456
 
+### Installation 3
+一键安装openvpn with google auth 账号90天过期
+已在rockylinux 9 测试。
+
+```
+# 建议更新系统，防止报错。 
+dnf update
+
+# 建议关闭selinux
+
+setenforce 0
+sed -i  's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config 
+
+# 安装openvpn
+cd /opt
+&& wget https://www.ghproxy.cn/https://raw.githubusercontent.com/jiamiao442/openvpn-install/master/openvpn-with-google-auth-install-90days.sh -O openvpn-with-google-auth-install-90days.sh \
+&& bash openvpn-with-google-auth-install-90days.sh
+```
+用户默认密码：123456
+
 ### 遇见的问题
 1. 验证失败。日志如下
 ```
